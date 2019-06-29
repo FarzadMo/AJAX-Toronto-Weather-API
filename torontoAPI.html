@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Toronto Weather Forecast</title>
+</head>
+<body>
+    <div class="city"></div>
+    <div class="humidity"></div>
+    <div class="temp"></div>
+    <div class="wind"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+var APIKey= "166a433c57516f51dfab1f7edaed8413";
+var queryURL= "https://api.openweathermap.org/data/2.5/weather?" +
+      "q=Toronto,Ontario&units=imperial&appid=" + APIKey;
+
+$.ajax({
+    url: queryURL,
+    method: "GET"
+}).then(function(response){
+    console.log(queryURL);
+    console.log(response);
+$(".city").html("<h1>"+response.name+" weather details:</h1>");
+$(".humidity").text("Humidity: "+response.main.humidity);
+$(".temp").text("Temperature (F) :"+response.main.temp);
+$(".wind").text("Wind Speed: "+response.wind.speed);
+
+});
+
+</script>
+    
+</body>
+</html>
